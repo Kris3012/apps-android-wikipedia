@@ -20,12 +20,12 @@ val textSize = KTextView {
 }
 
 // 3
-val buttonDecreaseText = KButton {
+val decreaseTextButton = KButton {
     withId(R.id.buttonDecreaseTextSize)
 }
 
 // 4
-val buttonIncreaseText = KButton {
+val increaseTextButton = KButton {
     withId(R.id.buttonIncreaseTextSize)
 }
 
