@@ -1,9 +1,24 @@
 package org.wikipedia.lesson03.homework
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.google.android.material.button.MaterialButton
+import com.kaspersky.kaspresso.screens.KScreen
+import io.github.kakaocup.kakao.text.KButton
 import org.wikipedia.R
+import org.wikipedia.onboarding.OnboardingPageView
 import org.wikipedia.views.AppTextView
+
+object OnboardingScreen: KScreen<OnboardingScreen>(){
+
+    override val layoutId = R.layout.fragment_onboarding_pager
+    override val viewClass = OnboardingPageView::class.java
+
+    val skipButton = KButton {
+        withId(R.id.fragment_onboarding_skip_button)
+    }
+
+}
 
 // 1
 val firstOnboardingImage = listOf(
