@@ -1,12 +1,14 @@
 package org.wikipedia.lesson18.homework
 
 import android.widget.FrameLayout
+import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import io.github.kakaocup.kakao.common.views.KView
 import io.github.kakaocup.kakao.image.KImageView
 import io.github.kakaocup.kakao.recycler.KRecyclerView
 import io.github.kakaocup.kakao.text.KTextView
 import org.wikipedia.R
 import org.wikipedia.lesson18.homework.extensions.invokeByIndex
+import org.wikipedia.lesson18.homework.extensions.invokeWithText
 import org.wikipedia.lesson18.homework.extensions.name
 import org.wikipedia.lesson18.homework.utils.NamedScreen
 
@@ -41,14 +43,18 @@ object ExploreScreenNamed : NamedScreen<ExploreScreenNamed>() {
         withText("Settings")
     }.name(withParent("Кнопка Settings"))
 
+
+    //тут кладем recycler'ы
     val items by lazy {
         KRecyclerView(
             builder = {
                 withId(R.id.feed_view)
             },
             itemTypeBuilder = {
-                itemType(::FeaturedArticleItemNamed)
+                itemType(::NewsItemRecyclerNamed)
+                itemType(::TopReadRecyclerNamed)
                 itemType(::CustomizeItemNamed)
+                itemType(::TopReadCardNamed)
             }
         ).name(withParent("Список фидов"))
 
@@ -57,4 +63,14 @@ object ExploreScreenNamed : NamedScreen<ExploreScreenNamed>() {
     fun page(index: Int, fnc: PagerItem.() -> Unit) {
         pager.invokeByIndex(index, fnc)
     }
+
+    fun customizeBlock(fnc: CustomizeItemNamed.() -> Unit){
+        items.invokeWithText("Customize", fnc)
+    }
+
+//найти блок TopRead
+fun topReadBlock(fnc: TopReadCardNamed.() -> Unit) {
+    items.invokeWithText("Top read", fnc)
+}
+
 }
