@@ -9,6 +9,7 @@ import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.wikipedia.lesson27.homework.DeprecatedTestRule
 import org.wikipedia.lesson27.homework.ExampleRules
+import org.wikipedia.lesson28.homework.DescriptionTestRule
 import org.wikipedia.main.MainActivity
 
 abstract class BaseTest: TestCase(
@@ -16,7 +17,7 @@ abstract class BaseTest: TestCase(
         ComposeConfig.Builder.default(this) {} }
 ) {
 
-    @get:Rule
+    @get:Rule(order = 1)
     val rule = ActivityScenarioRule(MainActivity::class.java)
 
     //урок 27. Добавим сюда свой кастомный rule
@@ -24,8 +25,8 @@ abstract class BaseTest: TestCase(
 //    val baseRule = ExampleRules()
 
 // дз. Добавила свой рул
-    @get:Rule
-    val myRule = DeprecatedTestRule()
+    @get:Rule(order = 2)
+    val myRule = DescriptionTestRule()
 
 
 
