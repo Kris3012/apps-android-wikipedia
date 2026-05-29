@@ -1,0 +1,17 @@
+name: "My awesome tests"
+outputDir: "marathon"
+debug: false
+vendorConfiguration:
+  type: "Android"
+  applicationApk: "app/build/outputs/apk/alpha/debug/app-alpha-debug.apk"
+  testApplicationApk: "app/build/outputs/apk/androidTest/alpha/debug/app-alpha-debug-androidTest.apk"
+  adbInitTimeoutMillis: 60000
+  allureConfiguration:
+      enabled: true
+      relativeResultsDirectory: "/Documents/allure-results"
+      pathRoot: "EXTERNAL_STORAGE"
+shardingStrategy:
+  type: "parallel"
+batchingStrategy:
+  type: "isolate"
+
